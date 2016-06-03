@@ -20,4 +20,19 @@ class Product < ActiveRecord::Base
                 with: %r{\.(jpg|png|gif)}i,
                 message: 'URL should include jpg, png or gif'
                       }
+
+  has_many :line_items
+
+  before_destroy :check_line_items_on_product
+
+  private
+  def check_line_items_on_product
+    if line_items.empty?
+      flash[:notice] = 'Product has removed'
+      true
+    else
+      flash[:notice] = 'Product can\t be removed. Check line items'
+      false
+    end
+  end
 end
