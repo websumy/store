@@ -1,0 +1,25 @@
+// Place all the styles related to the Store controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+  body {
+      .page-header {
+      text-align: left;
+    }
+
+    .product {
+      height: 420px;
+      text-align: justify;
+      .description {
+        height: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .price {
+        font-size: 20px;
+        text-align: right;
+        color: green;
+      }
+    }
+  }
