@@ -1,0 +1,10 @@
+
+<% items = titles_and_quaintities %>
+<% items.each do |title, quantity| %>
+    <p><%= "#{title} x #{quantity}" %></p>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>
