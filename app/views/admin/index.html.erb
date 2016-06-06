@@ -18,8 +18,10 @@
       <th scope="row"><%= order.name %></th>
       <th><%= order.address %></th>
       <th><%= order.email %></th>
-      <th><%= link_to 'Show more', order %></th>
-      <th><%= link_to 'Remove', order, method: :delete, data: {confirm: 'Are you sure?'} %></th>
+      <% label = '<span class="glyphicon glyphicon-info-sign icon_info" aria-hidden="true"></span>' %>
+      <th><%= link_to label.html_safe, order %></th>
+      <% label = '<span class="glyphicon glyphicon-trash remove_item" aria-hidden="true"></span>' %>
+      <th><%= link_to label.html_safe, order, method: :delete, data: {confirm: 'Are you sure?'} %></th>
     </tr>
   <% end %>
   </tbody>

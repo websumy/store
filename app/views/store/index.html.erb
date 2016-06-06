@@ -1,3 +1,10 @@
+<% if @user %>
+    <div class="greeting">
+      <%= link_to 'Check orders', admin_index_path %>
+      <br>
+      <%= link_to 'Create new product', new_product_path %>
+    </div>
+<% end %>
 <div class="page-header">
   <h1>Store</h1>
 </div>
