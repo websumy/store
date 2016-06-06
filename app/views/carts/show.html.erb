@@ -1,10 +1,29 @@
 
-<% items = titles_and_quaintities %>
-<% items.each do |title, quantity| %>
-    <p><%= "#{title} x #{quantity}" %></p>
-<% end %>
+<div class="col-md-3"></div>
+<div class="col-md-5">
+  <table class="table">
+    <thead>
+        <tr>
+          <th>Title</th>
+          <th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @cart.line_items.each do |line_item| %>
+        <tr>
+          <th scope="row"><%= line_item.product.title %></th>
+          <% label = '<span class="glyphicon glyphicon-trash remove_item" aria-hidden="true"></span>' %>
+          <td><%= link_to label.html_safe, line_item, method: :delete %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <p class="order">make an order</p>
+</div>
 
-
-
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<div class="row">
+  <div class="col-md-6">
+    <%= link_to 'Edit', edit_cart_path(@cart) %> |
+    <%= link_to 'Back', carts_path %>
+  </div>
+</div>

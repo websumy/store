@@ -1,9 +1,9 @@
 module CartsHelper
 
-  def titles_and_quaintities
+  def titles_and_quantities
     titles = {}
     @cart.line_items.each do |line_item|
-      product = Product.find(line_item.product_id)
+      product = line_item.product
       if titles[product.title].nil?
         titles[product.title] = 1
       else

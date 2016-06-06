@@ -19,12 +19,12 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navbar_titles">
         <li><a href="<%= store_path %>">Main page</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right navbar_titles">
         <% unless session[:cart_id].nil? %>
-            <li><a href="<%= cart_path session[:cart_id] %>>"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+            <li><a href="<%= cart_path session[:cart_id] %>"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge"><%= count_products %></span></a></li>
         <% end %>
         <li><a href="#">Login</a></li>
       </ul>
