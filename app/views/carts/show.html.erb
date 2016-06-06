@@ -1,10 +1,10 @@
-
 <div class="col-md-3"></div>
 <div class="col-md-5">
   <table class="table">
     <thead>
         <tr>
           <th>Title</th>
+          <th>Price</th>
           <th>Remove</th>
         </tr>
     </thead>
@@ -12,18 +12,14 @@
     <% @cart.line_items.each do |line_item| %>
         <tr>
           <th scope="row"><%= line_item.product.title %></th>
+          <th><%= number_to_currency line_item.product.price %></th>
           <% label = '<span class="glyphicon glyphicon-trash remove_item" aria-hidden="true"></span>' %>
-          <td><%= link_to label.html_safe, line_item, method: :delete %></td>
+          <td><%= link_to label.html_safe, line_item, method: :delete, data: {confirm: 'Are you sure?'} %></td>
         </tr>
     <% end %>
     </tbody>
   </table>
-  <p class="order">make an order</p>
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-    <%= link_to 'Edit', edit_cart_path(@cart) %> |
-    <%= link_to 'Back', carts_path %>
-  </div>
+  <p class="total_price">Total price: <%= number_to_currency total_price %></p>
+  <hr>
+  <p class="order"><%= link_to 'Make an order', new_order_path, class: 'make_order' %></p>
 </div>

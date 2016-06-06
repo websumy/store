@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authorize, only: [:create, :update, :destroy, :show]
 
   # GET /carts
   def index
@@ -8,6 +9,9 @@ class CartsController < ApplicationController
 
   # GET /carts/1
   def show
+    if @cart.id != session[:cart_id]
+      redirect_to store_path, notice: 'It\'s not your cart'
+    end
   end
 
   # GET /carts/new

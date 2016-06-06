@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :authorize
+
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   protected
@@ -15,4 +17,13 @@ class ApplicationController < ActionController::Base
     session[:cart_id] = @cart.id if session[:cart_id].nil?
     @cart
   end
+
+  protected
+
+  def authorize
+    unless User.find_by(id: session[:user_id])
+      redirect_to login_url, notice: 'Please, login'
+    end
+  end
+
 end

@@ -7,30 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top navbar_custom">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only"><a class="navbar-brand" href="<%= store_path %>">Depot</a></span>
       </button>
-      <a class="navbar-brand" href="<%= store_path %>">Depot</a>
+      <a class="navbar-brand navbar_titles" href="<%= store_path %>">Depot</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar_titles">
-        <li><a href="<%= store_path %>">Main page</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right navbar_titles">
+      <ul class="nav navbar-nav navbar-right navbar_right">
         <% unless session[:cart_id].nil? %>
-            <li><a href="<%= cart_path session[:cart_id] %>"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge"><%= count_products %></span></a></li>
+            <li><a href="<%= cart_path session[:cart_id] %>" class="navbar_right_titles"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge navbar_titles badge_custom"><%= count_products %></span></a></li>
         <% end %>
-        <li><a href="#">Login</a></li>
+        <% if session[:user_id].nil? %>
+            <li class="login"><%= link_to 'Login', login_path, class: 'navbar_right_titles' %></li>
+        <% else %>
+            <li class="login"><%= link_to 'Logout', logout_path, class: 'navbar_right_titles', method: :delete %></li>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<% if @user %>
+    <div class="greeting">
+      <%= link_to 'Check orders', admin_index_path %>
+    </div>
+<% end %>
 <% if notice %>
     <p id="notice">
       <%= notice %>

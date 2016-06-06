@@ -7,9 +7,11 @@
 #  cart_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  order_id   :integer
 #
 
 class LineItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :cart
+  belongs_to :order
 end
