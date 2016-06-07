@@ -1,17 +1,17 @@
 class LineItemsController < ApplicationController
   before_action :set_line_item, only: :destroy
-  skip_before_action :authorize, only: :create
+  skip_before_action :authorize, only: [:create, :destroy]
 
   # POST /line_items
   def create
     @cart = current_cart
     product = Product.find(params[:product_id])
-    @line_item = @cart.line_items.build(product: product)
-    session[:count_products_in_cart] = @cart.line_items.count + 1
+    @line_item = @cart.add_product(product.id)
+    session[:count_products_in_cart] = @cart.count_products_in_cart
 
     respond_to do |format|
         if @line_item.save
-          format.html { redirect_to current_cart, notice: 'Line item was successfully created.' }
+          format.html { redirect_to current_cart, notice: 'Product added to the cart' }
         end
     end
   end
