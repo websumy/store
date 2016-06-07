@@ -2,6 +2,10 @@
   <h1>New Product</h1>
 </div>
 
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
 <%= render 'form' %>
 
 <div class="col-md-11"></div>

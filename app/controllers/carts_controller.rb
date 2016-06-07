@@ -1,49 +1,11 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authorize, only: [:create, :update, :destroy, :show]
-
-  # GET /carts
-  def index
-    @carts = Cart.all
-  end
+  before_action :set_cart, only: [:show, :destroy]
+  skip_before_action :authorize, only: [:show, :destroy]
 
   # GET /carts/1
   def show
     if @cart.id != session[:cart_id]
       redirect_to store_path, notice: 'It\'s not your cart'
-    end
-  end
-
-  # GET /carts/new
-  def new
-    @cart = Cart.new
-  end
-
-  # GET /carts/1/edit
-  def edit
-  end
-
-  # POST /carts
-  def create
-    @cart = Cart.new(cart_params)
-
-    respond_to do |format|
-      if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
-      else
-        format.html { render :new }
-      end
-    end
-  end
-
-  # PATCH/PUT /carts/1
-  def update
-    respond_to do |format|
-      if @cart.update(cart_params)
-        format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
     end
   end
 

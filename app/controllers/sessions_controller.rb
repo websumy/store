@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
     user = User.find_by(name: params[:name])
     if user and user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to admin_index_url
+      redirect_to orders_path
     else
-      redirect_to login_url, notice: 'Invalid username or(and) password'
+      redirect_to login_path, notice: 'Invalid username or(and) password'
     end
   end
 

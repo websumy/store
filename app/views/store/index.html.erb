@@ -1,9 +1,12 @@
 <% if @user %>
     <div class="greeting">
-      <%= link_to 'Check orders', admin_index_path %>
+      <%= link_to 'Check orders', orders_path %>
       <br>
       <%= link_to 'Create new product', new_product_path %>
     </div>
+<% end %>
+<% if notice %>
+    <p id="notice"><%= notice %></p>
 <% end %>
 <div class="page-header">
   <h1>Store</h1>

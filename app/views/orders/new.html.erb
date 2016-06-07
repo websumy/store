@@ -2,6 +2,10 @@
   <h1 class="order_header">New order</h1>
 </div>
 
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
 <%= render 'form' %>
 
-<!-- <%= link_to 'Back', orders_path %>
+<%= link_to 'Back', orders_path %>

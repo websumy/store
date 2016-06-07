@@ -1,10 +1,11 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :destroy]
   before_action :current_cart, only: [:new, :create]
   skip_before_action :authorize, only: [:new, :create]
 
   # GET /orders
   def index
+    @total_orders = Order.count
     @orders = Order.all
   end
 
@@ -15,10 +16,6 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
-  end
-
-  # GET /orders/1/edit
-  def edit
   end
 
   # POST /orders
@@ -33,17 +30,6 @@ class OrdersController < ApplicationController
         format.html { redirect_to store_url, notice: 'Order was successfully created.' }
       else
         format.html { render :new }
-      end
-    end
-  end
-
-  # PATCH/PUT /orders/1
-  def update
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-      else
-        format.html { render :edit }
       end
     end
   end
