@@ -8,6 +8,7 @@ class LineItemsController < ApplicationController
     product = Product.find(params[:product_id])
     @line_item = @cart.line_items.build(product: product)
     session[:count_products_in_cart] = @cart.line_items.count + 1
+
     respond_to do |format|
         if @line_item.save
           format.html { redirect_to current_cart, notice: 'Line item was successfully created.' }

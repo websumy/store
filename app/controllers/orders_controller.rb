@@ -21,10 +21,10 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
+    @order.cart = @cart
 
     respond_to do |format|
       if @order.save
-        Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         session[:count_products_in_cart] = nil
         format.html { redirect_to store_url, notice: 'Order was successfully created.' }

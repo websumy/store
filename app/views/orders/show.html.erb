@@ -16,7 +16,7 @@
   </tr>
   </thead>
   <tbody>
-  <% @order.line_items.each do |line_item| %>
+  <% @order.cart.line_items.each do |line_item| %>
       <tr>
         <th scope="row"><%= line_item.product.title %></th>
         <th><%= line_item.product.price %></th>
