@@ -27,7 +27,12 @@
           <%= f.email_field :email %>
         </div>
         <div class="field">
-          <%= f.select :pay_type, Order::PAYMENT_TYPES,
+          <%= f.select :pay_type, options_for_select(Order.payment_types.keys.to_a.map do |el|
+                                                       splitted = ''
+                                                       el.split('_').map  { |sub_el| splitted = splitted + sub_el.capitalize + ' ' }
+                                                       el = splitted
+                                                     end
+                                ),
               prompt: 'Select a payment method' %>
         </div>
         <div class="actions">

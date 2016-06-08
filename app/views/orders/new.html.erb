@@ -3,9 +3,11 @@
 </div>
 
 <% if notice %>
-    <p id="notice"><%= notice %></p>
+    <div class="alert alert-success" role="alert">
+      <p id="notice"><%= notice %></p>
+    </div>
 <% end %>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', orders_path %>
+<%= link_to 'Back', store_path %>

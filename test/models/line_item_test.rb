@@ -8,7 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  order_id   :integer
-#  quantity   :integer          default(1)
+#  quantity   :integer          default(0)
 #
 
 require 'test_helper'

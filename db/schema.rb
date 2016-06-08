@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160607142447) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "order_id"
-    t.integer  "quantity",   default: 1
+    t.integer  "quantity",   default: 0
   end
 
   add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160607142447) do
     t.string   "name"
     t.text     "address"
     t.string   "email"
-    t.string   "pay_type"
+    t.string   "pay_type", :payment_type
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "cart_id"

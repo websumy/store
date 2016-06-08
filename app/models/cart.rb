@@ -13,12 +13,8 @@ class Cart < ActiveRecord::Base
   has_one :order
 
   def add_product(product_id)
-    current_line_item = line_items.find_by(product_id: product_id)
-    if current_line_item
-      current_line_item.quantity += 1
-    else
-      current_line_item = line_items.build(product_id: product_id)
-    end
+    current_line_item = line_items.find_or_create_by product_id: product_id
+    current_line_item.quantity += 1
     current_line_item
   end
 

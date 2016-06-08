@@ -3,7 +3,9 @@
 </div>
 
 <% if notice %>
-    <p id="notice"><%= notice %></p>
+    <div class="alert alert-success" role="alert">
+      <p id="notice"><%= notice %></p>
+    </div>
 <% end %>
 
 <%= render 'form' %>
@@ -11,5 +13,5 @@
 <div class="col-md-11"></div>
 <div class="col-md-1">
     <%= link_to 'Show', @product %> |
-    <%= link_to 'Back', products_path %>
+    <%= link_to 'Back', store_path %>
 </div>

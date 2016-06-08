@@ -7,4 +7,10 @@ module CartsHelper
     end
     price
   end
+
+  def removing_method(line_item)
+    method = :put
+    method = :delete if line_item.quantity == 1
+    method
+  end
 end

@@ -1,5 +1,7 @@
 <% if notice %>
-    <p id="notice"><%= notice %></p>
+    <div class="alert alert-success" role="alert">
+      <p id="notice"><%= notice %></p>
+    </div>
 <% end %>
 
 <div class="page-header">
@@ -27,7 +29,7 @@
   <div class="col-md-11"></div>
   <div class="col-md-1">
     <%= link_to 'Edit', edit_product_path(@product) %> |
-    <%= link_to 'Back', products_path %>
+    <%= link_to 'Back', store_path %>
   </div>
 </div>
 <% end %>

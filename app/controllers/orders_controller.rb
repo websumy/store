@@ -21,25 +21,28 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
-    @order.cart = @cart
+    @order.cart = current_cart
 
-    respond_to do |format|
-      if @order.save
-        session[:cart_id] = nil
-        session[:count_products_in_cart] = nil
-        format.html { redirect_to store_url, notice: 'Order was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @order.cart.line_items.empty?
+      redirect_to store_url, notice: 'Your cart is empty'
+      return
+    end
+
+    @order.pay_type = @order.pay_type.strip.split(' ').join('_').downcase
+
+    if @order.save
+      session[:cart_id] = nil
+      session[:count_products_in_cart] = nil
+      redirect_to store_url, notice: 'Order was successfully created.'
+    else
+      render :new
     end
   end
 
   # DELETE /orders/1
   def destroy
     @order.destroy
-    respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
-    end
+    redirect_to orders_url, notice: 'Order was successfully destroyed.'
   end
 
   private

@@ -1,5 +1,7 @@
 <% if notice %>
-    <p id="notice"><%= notice %></p>
+    <div class="alert alert-success" role="alert">
+      <p id="notice"><%= notice %></p>
+    </div>
 <% end %>
 
 <div class="col-md-3"></div>
@@ -7,18 +9,24 @@
   <table class="table">
     <thead>
         <tr>
-          <th>Title</th>
-          <th>Price</th>
-          <th>Remove</th>
+          <th class="cell">Title</th>
+          <th class="cell">Quantity</th>
+          <th class="cell">Price</th>
+          <th class="cell">Actions</th>
         </tr>
     </thead>
     <tbody>
     <% @cart.line_items.each do |line_item| %>
         <tr>
-          <th scope="row"><%= line_item.product.title %></th>
-          <th><%= number_to_currency line_item.product.price %></th>
-          <% label = '<span class="glyphicon glyphicon-trash remove_item" aria-hidden="true"></span>' %>
-          <td><%= link_to label.html_safe, line_item, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+          <th scope="row"  class="cell"><%= line_item.product.title %></th>
+          <th class="cell"><%= line_item.quantity %></th>
+          <th class="cell"><%= number_to_currency line_item.product.price %></th>
+          <th class="cell">
+            <% label = '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>' %>
+            <%= link_to label.html_safe, line_items_path(product_id: line_item.product), method: :post %>
+            <% label = '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>' %>
+            <%= link_to label.html_safe, line_item, method: removing_method(line_item), data: {confirm: 'Are you sure?'} %>
+          </th>
         </tr>
     <% end %>
     </tbody>
