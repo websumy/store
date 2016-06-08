@@ -28,8 +28,6 @@ class OrdersController < ApplicationController
       return
     end
 
-    @order.pay_type = @order.pay_type.strip.split(' ').join('_').downcase
-
     if @order.save
       session[:cart_id] = nil
       session[:count_products_in_cart] = nil
@@ -53,6 +51,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :address, :email, :pay_type)
+      params.require(:order).permit(:name, :address, :email, :payment_type)
     end
 end
