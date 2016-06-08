@@ -21,6 +21,7 @@ class Product < ActiveRecord::Base
                 message: 'URL should include jpg, png or gif'
                       }
 
+  paginates_per 12
   has_many :line_items
 
   before_destroy :check_line_items_on_product

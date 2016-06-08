@@ -8,9 +8,11 @@ module CartsHelper
     price
   end
 
-  def removing_method(line_item)
-    method = :put
-    method = :delete if line_item.quantity == 1
-    method
+  def minus_label
+    '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>'.html_safe
+  end
+
+  def plus_label
+    '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'.html_safe
   end
 end

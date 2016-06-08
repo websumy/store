@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'store#index', as: 'store'
 
   resources :products, except: :index
-  resources :line_items, only: [:create, :update, :destroy]
+  resources :line_items, only: [:create, :destroy]
   resources :carts, only: [:show]
   resources :orders, except: [:edit, :update]
 
