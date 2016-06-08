@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Product.delete_all
-Product.create!(title: 'CoffeeScript',
+Product.create!(title: 'CoffeeScript1',
                 description:
                     "CoffeeScript is JavaScript done right. It provides all of JavaScript's
 	functionality wrapped in a cleaner, more succinct syntax. In the first
@@ -17,7 +17,7 @@ Product.create!(title: 'CoffeeScript',
                 image_url:   'cs.jpg',
                 price: 36.00)
 # . . .
-Product.create!(title: 'Programming Ruby 1.9 & 2.0',
+Product.create!(title: 'Programming Ruby 1.9 & 2.01',
                 description:
                     "Ruby is the fastest growing and most exciting dynamic language
         out there. If you need to get working programs delivered fast,
@@ -26,7 +26,7 @@ Product.create!(title: 'Programming Ruby 1.9 & 2.0',
                 price: 49.95)
 # . . .
 
-Product.create!(title: 'Rails Test Prescriptions',
+Product.create!(title: 'Rails Test Prescriptions2',
                 description:
                 "Rails Test Prescriptions is a comprehensive guide to testing
         Rails applications, covering Test-Driven Development from both a
@@ -38,7 +38,7 @@ Product.create!(title: 'Rails Test Prescriptions',
                 price: 34.95)
 # . . .
 
-Product.create!(title: 'NewCoffeeScript',
+Product.create!(title: 'NewCoffeeScript 2',
                 description:
                     "CoffeeScript is JavaScript done right. It provides all of JavaScript's
 	functionality wrapped in a cleaner, more succinct syntax. In the first
@@ -47,17 +47,19 @@ Product.create!(title: 'NewCoffeeScript',
 	while writing clearer, cleaner, and safer code.",
                 image_url:   'cs.jpg',
                 price: 36.00)
-
-Product.create!(title: 'New Rails Test Prescriptions',
-                description:
-                    "Rails Test Prescriptions is a comprehensive guide to testing
+for i in 0..40 do
+  Product.create!(title: 'New Rails Test Prescriptions 0' + i.to_s,
+                  description:
+                      "Rails Test Prescriptions is a comprehensive guide to testing
         Rails applications, covering Test-Driven Development from both a
         theoretical perspective (why to test) and from a practical perspective
         (how to test effectively). It covers the core Rails testing tools and
         procedures for Rails 2 and Rails 3, and introduces popular add-ons,
         including Cucumber, Shoulda, Machinist, Mocha, and Rcov.",
-                image_url: 'rtp.jpg',
-                price: 34.95)
+                  image_url: 'rtp.jpg',
+                  price: 34.95)
+end
+
 
 User.create!(name: 'admin3',
 password: 'admin')
