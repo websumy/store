@@ -19,12 +19,6 @@ class Cart < ActiveRecord::Base
   end
 
   def count_products_in_cart
-    sum = 0
-    line_items.each { |line_item| sum += line_item.quantity }
-    sum
-  end
-
-  def has_line_item?(line_item)
-    line_items.include? line_item
+    line_items.sum(:quantity)
   end
 end

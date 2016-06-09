@@ -28,12 +28,6 @@ class Product < ActiveRecord::Base
 
   private
   def check_line_items_on_product
-    if line_items.empty?
-      flash[:notice] = 'Product has removed'
-      true
-    else
-      flash[:notice] = 'Product can\t be removed. Check line items'
-      false
-    end
+    line_items.empty?
   end
 end

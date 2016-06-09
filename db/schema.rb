@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160607142447) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,12 +30,21 @@ ActiveRecord::Schema.define(version: 20160607142447) do
     t.integer  "quantity",   default: 0
   end
 
-  add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id"
-  add_index "line_items", ["order_id"], name: "index_line_items_on_order_id"
-  add_index "line_items", ["product_id"], name: "index_line_items_on_product_id"
+  add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
+  add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
+  add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
 
-# Could not dump table "orders" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "orders", force: :cascade do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "email"
+    t.string   "payment_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "cart_id"
+  end
+
+  add_index "orders", ["cart_id"], name: "index_orders_on_cart_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "title"

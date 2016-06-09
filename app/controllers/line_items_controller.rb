@@ -16,7 +16,7 @@ class LineItemsController < ApplicationController
 
   # DELETE /line_items/1
   def destroy
-    if current_cart.has_line_item?(@line_item)
+    if @cart.include? @line_item
       if @line_item.quantity > 1
         @line_item.quantity -= 1
         session[:count_products_in_cart] -= 1
