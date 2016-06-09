@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
 
   # GET /orders
   def index
-    @total_orders = Order.count
     @orders = Order.all
   end
 
@@ -23,11 +22,6 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.cart = current_cart
 
-    if @order.cart.line_items.empty?
-      redirect_to store_url, notice: 'Your cart is empty'
-      return
-    end
-
     if @order.save
       session[:cart_id] = nil
       session[:count_products_in_cart] = nil
@@ -44,13 +38,11 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
+  def set_order
+    @order = Order.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:name, :address, :email, :payment_type)
-    end
+  def order_params
+    params.require(:order).permit(:name, :address, :email, :payment_type)
+  end
 end

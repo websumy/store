@@ -29,7 +29,7 @@
     <% end %>
     </tbody>
   </table>
-  <p class="total_price">Total price: <%= number_to_currency total_price %></p>
+  <p class="total_price">Total price: <%= number_to_currency total_price(@cart) %></p>
   <hr>
-  <p class="order"><%= link_to 'Make an order', new_order_path, class: 'make_order' %></p>
+  <p class="order"><%= link_to 'Make an order', new_order_path, class: 'make_order' unless @cart.line_items.empty? %></p>
 </div>

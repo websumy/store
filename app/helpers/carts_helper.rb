@@ -1,8 +1,8 @@
 module CartsHelper
 
-  def total_price
+  def total_price(cart)
     price = 0
-    @cart.line_items.each do |line_item|
+    cart.line_items.each do |line_item|
       price += line_item.quantity * line_item.product.price
     end
     price

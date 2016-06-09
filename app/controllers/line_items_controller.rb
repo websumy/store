@@ -4,38 +4,33 @@ class LineItemsController < ApplicationController
 
   # POST /line_items
   def create
-    @cart = current_cart
-    product = Product.find(params[:product_id])
-    @line_item = @cart.add_product(product.id)
-
-    if @line_item.save
-      session[:count_products_in_cart] = @cart.count_products_in_cart
-      redirect_to store_path, notice: 'Product added to the cart'
-    end
+    current_cart.add_product(params[:product_id])
+    session[:count_products_in_cart] = current_cart.count_products_in_cart
+    redirect_to store_path, notice: 'Product added to the cart'
   end
 
   # DELETE /line_items/1
   def destroy
-    if @cart.include? @line_item
-      if @line_item.quantity > 1
-        @line_item.quantity -= 1
-        session[:count_products_in_cart] -= 1
-        if @line_item.save
-          redirect_to current_cart, notice: 'Item removed from the cart'
-        end
-      else
-        @line_item.destroy
-        session[:count_products_in_cart] -= 1 if session[:count_products_in_cart]
-        redirect_to current_cart, notice: 'Line item was successfully destroyed.'
-      end
+    if current_cart.has_line_item?(@line_item)
+      current_cart.remove_product_from_line_item(@line_item)
+      session[:count_products_in_cart] = current_cart.count_products_in_cart
+      notice = 'Item removed from the cart'
     else
-      redirect_to store_path, notice: 'Cart doesn\'t has the line_item'
+      notice = 'It\'s not your cart'
     end
+    redirect_to current_cart, notice: notice
   end
 
+# another way of destroying
+
+=begin
+ notice = current_cart.remove_product_from_line_item(@line_item)
+ session[:count_products_in_cart] = current_cart.count_products_in_cart
+ redirect_to current_cart, notice: notice
+=end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_line_item
-      @line_item = LineItem.find(params[:id])
-    end
+  def set_line_item
+    @line_item = LineItem.find(params[:id])
+  end
 end

@@ -13,15 +13,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_cart
-    @cart ||= Cart.find_or_create_by(id: session[:cart_id])
-    session[:cart_id] = @cart.id if session[:cart_id].nil?
+    @cart = Cart.find_or_create_by(id: session[:cart_id])
+    session[:cart_id] ||= @cart.id
     @cart
   end
 
   def authorize
-    unless User.find_by(id: session[:user_id])
-      redirect_to login_url, notice: 'Please, login'
-    end
+    redirect_to login_url, notice: 'Please, login' unless User.find_by(id: session[:user_id])
   end
-
 end
