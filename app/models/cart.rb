@@ -16,7 +16,7 @@ class Cart < ActiveRecord::Base
     current_line_item = line_items.find_by product_id: product_id
     current_line_item = line_items.build(product_id: product_id) if current_line_item.nil?
     current_line_item.quantity += 1
-    current_line_item.save
+    current_line_item.save!
   end
 
   def count_products_in_cart
@@ -32,7 +32,7 @@ class Cart < ActiveRecord::Base
       line_item.quantity -= 1
       line_item.save!
     else
-      line_item.destroy!
+      line_item.destroy
     end
   end
 

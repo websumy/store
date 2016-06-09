@@ -6,14 +6,19 @@ class ApplicationController < ActionController::Base
   before_action :authorize
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from ActiveRecord::RecordInvalid,  with: invalid_record
 
   protected
   def record_not_found
     redirect_to store_url, notice: "Object with id #{params[:id]} not found"
   end
 
+  def invalid_record
+    redirect_to store_url, notice: 'Something went wrong'
+  end
+
   def current_cart
-    @cart = Cart.find_or_create_by(id: session[:cart_id])
+    @cart ||= Cart.find_or_create_by(id: session[:cart_id])
     session[:cart_id] ||= @cart.id
     @cart
   end
