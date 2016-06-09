@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authorize
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from ActiveRecord::RecordInvalid,  with: invalid_record
+  rescue_from ActiveRecord::RecordInvalid,  with: :invalid_record
 
   protected
   def record_not_found
