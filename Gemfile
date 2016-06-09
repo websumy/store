@@ -13,7 +13,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap_form'
 # admin
-gem 'activeadmin', '~> 1.0.0.pre2'
+gem 'rails_admin'
 # pagination
 gem 'kaminari'
 # Use Uglifier as compressor for JavaScript assets
