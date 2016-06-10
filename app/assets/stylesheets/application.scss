@@ -19,6 +19,7 @@
 @import "bootstrap";
 
 body {
+  background-color: white;
   padding-left: 20px;
   padding-top: 60px;
   padding-right: 20px;
@@ -41,13 +42,15 @@ a:hover {
 }
 
 .navbar_custom {
-  background-color: #dbdfda;
+  background-color: #000000;
+  border: none;
 
   .navbar-header {
     .navbar-brand {
       color: #f7f3ff;
-      font-size: 30px;
-      background-color: #1cb2ff;
+      font-size: 40px;
+      background-color: #000000;
+      color: white;
     }
   }
   .collapse {
@@ -59,18 +62,19 @@ a:hover {
   }
 
   .navbar_right {
-    background-color: lightblue;
+    background-color: #0085b7;
     .navbar_right_titles {
       color: #f7f3ff;
       font-size: 17px;
       .badge_custom {
-        background-color: #7f71ff;
+        background-color: black;
+        color: white;
         font-size: 13px;
         text-shadow: -1px 0 #000000, 0 1px black, 1px 0 black, 0 -1px black;
       }
     }
     .login {
-      background-color: #1cb2ff;
+      background-color: #000000;
     }
   }
   .orders_admin {

@@ -7,8 +7,6 @@ gem 'sass-rails', '~> 5.0'
 # bootstrap
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap_form'
-# admin
-gem 'activeadmin', '~> 1.0.0.pre2'
 # pagination
 gem 'kaminari'
 #database
@@ -18,7 +16,7 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+# gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 

@@ -1,0 +1,6 @@
+Hello!
+You made an order:
+Products:
+<% @order.cart.line_items.each do |line_item| %>
+    <%= line_item.product.title %> x <%= line_item.quantity %> with price: <%= line_item.product.price %> <br>
+<% end %>

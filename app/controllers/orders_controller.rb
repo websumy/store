@@ -22,6 +22,7 @@ class OrdersController < ApplicationController
     @order = Order.new_order order_params, current_cart
 
     if @order.save
+      OrderMailer.order_to_user(@order).deliver_now
       session[:cart_id] = nil
       session[:count_products_in_cart] = nil
       redirect_to store_url, notice: 'Order was successfully created.'

@@ -1,7 +1,7 @@
 // Place all the styles related to the Store controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
 .alert {
   text-align: center;
 }
@@ -10,10 +10,12 @@ body {
     .page-header {
       text-align: center;
       h1 {
-        font-family: 'Open Sanse' !important;
-        font-size: 60px;
+        font-family: 'Poiret One', cursive;
+        font-size: 80px;
         margin-top: -40px;
+        color: black;
       }
+      border-color: black;
     }
    .product {
       height: 430px;

@@ -20,7 +20,7 @@ class Order < ActiveRecord::Base
   validates :name, :address, :email, :payment_type, :cart_id, presence: true
   validates :email, format: { with: /.+@.+\..+/i }
 
-  def new_order(order_params, cart)
+  def self.new_order(order_params, cart)
     order = Order.new(order_params)
     order.cart = cart.line_items.empty? ? nil : cart
     order
