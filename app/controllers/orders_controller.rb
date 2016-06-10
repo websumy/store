@@ -19,8 +19,7 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    @order = Order.new(order_params)
-    @order.cart = current_cart
+    @order = Order.new_order order_params, current_cart
 
     if @order.save
       session[:cart_id] = nil

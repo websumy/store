@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def invalid_record
-    redirect_to store_url, notice: 'Something went wrong'
+    redirect_to store_url, notice: 'Something went wrong. Try again'
   end
 
   def current_cart
